@@ -1,3 +1,7 @@
+import smartphone from './smartphone.jpg'
+import book from './book.jpg'
+import speaker from './speaker.jpg'
+
 const initialState = {
     products: [{
         id: 1,
@@ -34,4 +38,10 @@ const initialState = {
     }],
     cart: [],
     currentItem: null
+}
+
+const shopReducer = (state = initialState, action){
+    // switch(action.type){
+    //     case 
+    // }
 }

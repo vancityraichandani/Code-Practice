@@ -22,11 +22,11 @@ function App({ current }) {
         <Switch>
           <Route exact path="/" component={Products} />
           <Route exact path="/cart" component={Cart} />
-          {/* {!current ? 
+          {!current ? 
             <Redirect to="/" />
            : 
             <Route exact path="/product/:id" component={SingleItem}/>
-          } */}
+          }
           <Route exact path="/product/:id" component={SingleItem}/>
         </Switch> 
       </div>
@@ -34,4 +34,10 @@ function App({ current }) {
   );
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    current: state.currentItem
+  }
+}
+
+export default connect(mapStateToProps)(App)

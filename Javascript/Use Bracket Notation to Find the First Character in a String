@@ -1,0 +1,11 @@
+var firstLetterOfFirstName = "";
+var firstName = "Somesh";
+
+firstLetterOfFirstName = firstName[0];
+
+// Setup
+var firstLetterOfLastName = "";
+var lastName = "LRaichandani";
+
+// Only change code below this line
+firstLetterOfLastName = lastName[0];

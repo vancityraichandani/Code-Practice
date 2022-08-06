@@ -6,8 +6,7 @@ import { useState } from 'react';
 import quotes from './constants/quotes'
 
 function App() {
-
-
+  
   const [quote, setquote] = useState("")
   const [author, setauthor] = useState("")
 

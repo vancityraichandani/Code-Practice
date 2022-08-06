@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '@mui/material/Button';
+import '../App.css'; 
 
 function Refresh({quotes, quote, setquote, author, setauthor}) {
     const handleClick = () => {
@@ -8,8 +9,9 @@ function Refresh({quotes, quote, setquote, author, setauthor}) {
         setauthor(quotes[idx].author)
     }
   return (
-    <div style={{marginTop: 10}}>
+    <div style={{paddingTop: 50}}>
         <Button 
+        color="secondary"
         variant="contained"
         onClick={handleClick}
         >New Quote</Button>

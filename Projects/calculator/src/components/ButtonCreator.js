@@ -1,15 +1,21 @@
 import { createFilterOptions } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import keys from '../constants/KeyData'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import 'animate.css'
 
-const colors = ['red', 'blue', 'green', 'purple', 'yellow', 'orange', 'cyan', 'aqua', 'crimson', 'royalblue']
+const colors = ['red', 'blue', 'lime', 'purple', 'yellow', 'orange', 'cyan', 'aqua', 'crimson', 'royalblue']
 function ButtonCreator() {
 
     const [led, setLed] = useState('')
     const [power, setPower] = useState(false)
     const [status, setStatus] = useState(false)
-    const [curr, setCurr] = useState(null)
+    const [curr, setCurr] = useState({})
     const [int, setInt] = useState(null)
+    const [exp, setExp] = useState('🙈')
+    const [error, setError] = useState('')
+    const [hover, setHover] = useState(false)
 
     useEffect(() => {
         /**
@@ -37,32 +43,33 @@ function ButtonCreator() {
          */
         if (power) {
             let ans = ''
-            console.log('c', curr);
-            switch (curr) {
-                case 'AC':
-                    ans = '👀'
-                    break
-                case '=':
-                    ans = eval(keys[18]['key'])
-                    break
-                default:
-                    ans = keys[18]['key'] === '👀' ? curr : keys[18]['key'] + "" + curr
+            try {
+                switch (curr.val) {
+                    case 'AC':
+                        ans = '👀'
+                        break
+                    case '=':
+                        ans = eval(keys[18]['key'])
+                        break
+                    default:
+                        ans = keys[18]['key'] === '👀' ? curr.val : keys[18]['key'] + "" + curr.val
 
+                }
+            } catch (error) {
+                setError(error.message)
+                setTimeout(() => {
+                    setError('')
+                }, 2000);
+                ans = 0
             }
-            console.log('a', ans);
-            keys[18]['key'] = isNaN(ans) || curr !== '=' ? ans : parseFloat(ans.toFixed(3))
+
+            keys[18]['key'] = isNaN(ans) || curr.val !== '=' ? ans : parseFloat(ans.toFixed(3))
+            setExp(ans)
         }
 
     }, [curr])
 
-    async function calculate(key) {
-        if (power) {
-            setCurr(key)
-        }
-    }
-
-
-    const handleClick = (e, key) => {
+    function handleClick(e, key) {
 
         if (key === '⚡' && !power) {
             setPower(true)
@@ -88,7 +95,9 @@ function ButtonCreator() {
             return
         }
 
-        calculate(key)
+        if (power) {
+            setCurr({ val: key })
+        }
     }
 
     const handleMouseEnter = (e, idx) => {
@@ -125,15 +134,31 @@ function ButtonCreator() {
                             onMouseEnter={(e) => handleMouseEnter(e, idx)}
                             onClick={(e) => handleClick(e, key, idx)}
                             onMouseLeave={(e) => handleLeave(e, idx)}
-                        >{key === 'DISPLAY' ? '🙈' : key}
+                        >{key === 'DISPLAY' ? exp : key}
                         </div>
                     ))
 
                 }
             </div>
-            {
-                status
-            }
+            <div style={{ height: 50, fontWeight: 'bold', fontSize: '20px' }}>
+                {
+                    status
+                }
+            </div>
+            <div style={{ height: 50, fontWeight: 'bold', fontSize: '20px' }}>
+                {
+                    error
+                }
+            </div>
+            <div
+                style={{ paddingTop: '30px', fontWeight: 'bold', fontSize: '20px' }}>
+                <a target='_blank' href="https://github.com/vancityraichandani">
+                    Somesh <FontAwesomeIcon
+                        onMouseEnter={() => setHover(true)}
+                        onMouseLeave={() => setHover(false)}
+                        className={hover ? 'animate__animated animate__headShake' : ''} icon={faGithub}></FontAwesomeIcon> 
+                &nbsp; Raichandani</a>
+            </div>
         </>
     )
 }

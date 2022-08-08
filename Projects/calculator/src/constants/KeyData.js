@@ -96,7 +96,7 @@ const keys = [
         left: 100,
         bottom: 150,
         idx:10,
-        color:'steelblue'
+        color:'lime'
     },
     {
         key: 0,

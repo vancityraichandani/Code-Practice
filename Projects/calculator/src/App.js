@@ -1,13 +1,15 @@
 import logo from './logo.svg';
 import './App.css';
 import ButtonCreator from './components/ButtonCreator';
-import { useState } from 'react';
+import 'animate.css'
 
 function App() {
   return (
-    <div className="App">
-      <h1><strong><i><span style={{color:'red'}}>R</span><span style={{color:'green'}}>G</span><span style={{color:'blue'}}>B</span> CALCULATOR</i></strong> </h1>
-      <ButtonCreator />
+    <div>
+      <h1 style={{marginTop:80}} className="App animate__animated animate__fadeInTopLeft"><strong><i><span style={{ color: 'red' }}>R</span><span style={{ color: 'green' }}>G</span><span style={{ color: 'blue' }}>B</span></i> CALCULATOR</strong> </h1>
+      <div style={{marginTop:50}} className="App animate__animated animate__fadeInBottomRight">
+        <ButtonCreator />
+      </div>
     </div>
   );
 }

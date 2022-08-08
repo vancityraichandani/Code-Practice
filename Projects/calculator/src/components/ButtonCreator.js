@@ -46,14 +46,20 @@ function ButtonCreator() {
                     ans = eval(keys[18]['key'])
                     break
                 default:
-                    ans = keys[18]['key'] === 'DISPLAY' ? curr : keys[18]['key'] + curr
+                    ans = keys[18]['key'] === '👀' ? curr : keys[18]['key'] + "" + curr
 
             }
             console.log('a', ans);
-            keys[18]['key'] = ans
+            keys[18]['key'] = isNaN(ans) || curr !== '=' ? ans : parseFloat(ans.toFixed(3))
         }
 
     }, [curr])
+
+    async function calculate(key) {
+        if (power) {
+            setCurr(key)
+        }
+    }
 
 
     const handleClick = (e, key) => {
@@ -82,14 +88,12 @@ function ButtonCreator() {
             return
         }
 
-        if (power) {
-            setCurr(key)
-        }
+        calculate(key)
     }
 
     const handleMouseEnter = (e, idx) => {
         e.target.style['cursor'] = 'pointer'
-        if(idx !== 18){
+        if (idx !== 18) {
             e.target.style['background-color'] = 'lightskyblue';
             e.target.style['border-radius'] = '10px';
             e.target.style['height'] = '43px';
@@ -114,12 +118,12 @@ function ButtonCreator() {
         <>
             <div style={{ border: '1px solid black', margin: '30px auto', backgroundColor: 'grey', height: '301px', width: '303px', position: 'relative' }}>
                 {
-                    keys.map(({ key, height, width, left, bottom, idx,color }) => (
+                    keys.map(({ key, height, width, left, bottom, idx, color }) => (
                         <div
                             key={idx}
-                            style={{ fontWeight: 'bold', borderRadius: '6px', boxShadow: `1px 1px 2px 1px ${led}`, border: '2px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center', height: `${height}px`, width: `${width}px`, position: 'absolute', left: `${left}px`, bottom: `${bottom}px`,backgroundColor:color }}
+                            style={{ fontWeight: 'bold', borderRadius: '6px', boxShadow: `1px 1px 2px 2px ${led}`, border: '2px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center', height: `${height}px`, width: `${width}px`, position: 'absolute', left: `${left}px`, bottom: `${bottom}px`, backgroundColor: color }}
                             onMouseEnter={(e) => handleMouseEnter(e, idx)}
-                            onClick={(e) => handleClick(e, key)}
+                            onClick={(e) => handleClick(e, key, idx)}
                             onMouseLeave={(e) => handleLeave(e, idx)}
                         >{key === 'DISPLAY' ? '🙈' : key}
                         </div>

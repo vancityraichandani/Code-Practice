@@ -126,7 +126,7 @@ const keys = [
         color:'yellow'
     },
     {
-        key: 'X',
+        key: '*',
         height: 50,
         width: 75,
         left: 150,
@@ -167,7 +167,8 @@ const keys = [
         width: 150,
         left: 150,
         bottom: 250,
-        idx:18
+        idx:18,
+        color:'lightgrey'
     },
 ]
 

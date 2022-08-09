@@ -49,7 +49,16 @@ function ButtonCreator() {
                         ans = '👀'
                         break
                     case '=':
-                        ans = eval(keys[18]['key'])
+                        let data = ""
+                        for (let i = 0; i < keys[18]['key'].length; i++) {
+                            let prev = ""
+                            while (keys[18]['key'].charAt(i) !== '+' && keys[18]['key'].charAt(i) !== '-' && keys[18]['key'].charAt(i) !== '*' && keys[18]['key'].charAt(i) !== '/' && i < keys[18]['key'].length) {
+                                prev += keys[18]['key'].charAt(i);
+                                i++;
+                            }
+                            data += parseFloat(prev, 10) + keys[18]['key'].charAt(i)
+                        }
+                        ans = eval(data)
                         break
                     default:
                         ans = keys[18]['key'] === '👀' ? curr.val : keys[18]['key'] + "" + curr.val
@@ -103,7 +112,7 @@ function ButtonCreator() {
     const handleMouseEnter = (e, idx) => {
         e.target.style['cursor'] = 'pointer'
         if (idx !== 18) {
-            e.target.style['background-color'] = 'lightskyblue';
+            // e.target.style['background-color'] = 'lightskyblue';
             e.target.style['border-radius'] = '10px';
             e.target.style['height'] = '43px';
             e.target.style['width'] = `${parseInt(e.target.style['width'].split('px')[0]) - 4}px`;
@@ -112,10 +121,23 @@ function ButtonCreator() {
         }
     }
 
+    const handleME = (e, idx) => {
+        e.target.style['cursor'] = 'pointer'
+        if (idx !== 18) {
+            e.target.style['background-color'] = 'lightskyblue'
+        }
+    }
+
+    const handleML = (e, idx) => {
+        e.target.style['cursor'] = 'pointer'
+        if (idx !== 18) {
+            e.target.style['background-color'] = keys[idx]['color'];
+        }
+    }
+
     const handleLeave = (e, idx) => {
         e.target.style['height'] = '50px';
         if (idx !== 18) {
-            e.target.style['background-color'] = keys[idx]['color'];
             e.target.style['border-radius'] = '6px';
             e.target.style['width'] = `${parseInt(e.target.style['width'].split('px')[0]) + 4}px`;
             e.target.style['bottom'] = `${parseInt(e.target.style['bottom'].split('px')[0]) - 4}px`
@@ -129,11 +151,14 @@ function ButtonCreator() {
                 {
                     keys.map(({ key, height, width, left, bottom, idx, color }) => (
                         <div
+                            draggable={false}
                             key={idx}
                             style={{ fontWeight: 'bold', borderRadius: '6px', boxShadow: `1px 1px 2px 2px ${led}`, border: '2px solid black', display: 'flex', justifyContent: 'center', alignItems: 'center', height: `${height}px`, width: `${width}px`, position: 'absolute', left: `${left}px`, bottom: `${bottom}px`, backgroundColor: color }}
-                            onMouseEnter={(e) => handleMouseEnter(e, idx)}
                             onClick={(e) => handleClick(e, key, idx)}
-                            onMouseLeave={(e) => handleLeave(e, idx)}
+                            onMouseOver={(e) => handleME(e, idx)}
+                            onMouseDown={(e) => handleMouseEnter(e, idx)}
+                            onMouseUp={(e) => handleLeave(e, idx)}
+                            onMouseOut={(e) => handleML(e, idx)}
                         >{key === 'DISPLAY' ? exp : key}
                         </div>
                     ))
@@ -152,12 +177,12 @@ function ButtonCreator() {
             </div>
             <div
                 style={{ paddingTop: '30px', fontWeight: 'bold', fontSize: '20px' }}>
-                <a target='_blank' href="https://github.com/vancityraichandani">
-                    Somesh <FontAwesomeIcon
+                <span style={{color:'purple', fontFamily:'merriweather'}}>S</span><a target='_blank' href="https://github.com/vancityraichandani">
+                    <FontAwesomeIcon
                         onMouseEnter={() => setHover(true)}
                         onMouseLeave={() => setHover(false)}
-                        className={hover ? 'animate__animated animate__headShake' : ''} icon={faGithub}></FontAwesomeIcon> 
-                &nbsp; Raichandani</a>
+                        className={hover ? 'animate__animated animate__headShake' : ''} icon={faGithub}></FontAwesomeIcon>
+                    </a><span style={{color:'purple', fontFamily:'merriweather'}}>MESH RAI</span><span style={{color:'purple', fontFamily:'merriweather'}}>CHANDANI</span>
             </div>
         </>
     )

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 
 function Timer({ data }) {
     let { time, setTime, minutes, seconds } = data
-    
 
     return (
         <div>

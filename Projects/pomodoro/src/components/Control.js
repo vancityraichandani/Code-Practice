@@ -5,10 +5,11 @@ function Control({ data }) {
     let { time, setTime, minutes, seconds, setSeconds } = data
 
     function resolveAfter1Second() {
-        return new Promise(resolve => {
+        console.log(seconds);
+        setSeconds(parseInt(seconds) + 1)
+        return new Promise((resolve) => {
             setTimeout(() => {
-                setSeconds(parseInt(seconds) + 1)
-                resolve('resolved');
+                resolve('res')
             }, 1000)
         });
     }
@@ -16,7 +17,6 @@ function Control({ data }) {
     async function handleClick() {
         const result = await resolveAfter1Second();
         handleClick()
-        // expected output: "resolved"
     }
 
     return (

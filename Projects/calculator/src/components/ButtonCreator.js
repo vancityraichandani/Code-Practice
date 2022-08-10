@@ -176,7 +176,7 @@ function ButtonCreator() {
                 }
             </div>
             <div
-                style={{ paddingTop: '30px', fontWeight: 'bold', fontSize: '20px' }}>
+                style={{ paddingTop: '10px', fontWeight: 'bold', fontSize: '20px' }}>
                 <span style={{color:'purple', fontFamily:'merriweather'}}>S</span><a target='_blank' href="https://github.com/vancityraichandani">
                     <FontAwesomeIcon
                         onMouseEnter={() => setHover(true)}

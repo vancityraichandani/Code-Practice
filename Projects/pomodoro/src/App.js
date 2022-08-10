@@ -14,23 +14,14 @@ function App() {
     setSeconds(time % 60 < 10 ? '0' + time % 60 : time % 60)
   }, [])
 
-  // setTimeout(() => {
-  //   setSeconds(seconds - 1)
-  // }, 1000);
-  // useEffect(()=>{
-  //   console.log('1');
-  // },[setTimeout(() => {
-    
-  // }, 1000)])
-
   const data = {
-    time, setTime, minutes, seconds
+    time, setTime, minutes, seconds, setSeconds
   }
 
   return (
     <div className="App">
-      <Timer data={data} />
-      <Control />
+      <Timer data={data}/>
+      <Control data={data}/>
     </div>
   );
 }

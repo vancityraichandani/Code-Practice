@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Control from './components/Control';
 import Timer from './components/Timer';
+import Header from './components/Header';
 
 let s = 5
 function App() {
@@ -44,6 +45,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       {/* <Timer data={data}/>
       <Control data={data}/> */}
       <div>

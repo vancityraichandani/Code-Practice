@@ -14,7 +14,7 @@ function Control({ data }) {
         });
     }
 
-    async function handleClick() {
+    function handleClick() {
         const result = await resolveAfter1Second();
         handleClick()
     }

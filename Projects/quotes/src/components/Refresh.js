@@ -1,20 +1,17 @@
 import React from 'react'
 import Button from '@mui/material/Button';
-import '../App.css'; 
+import '../App.css';
+import { useDispatch } from 'react-redux'
 
-function Refresh({quotes, quote, setquote, author, setauthor}) {
-    const handleClick = () => {
-        let idx = Math.floor(Math.random() * (8))
-        setquote(quotes[idx].quote)
-        setauthor(quotes[idx].author)
-    }
-  return (
-    <div style={{paddingTop: 50}}>
-        <Button 
-        color="secondary"
-        variant="contained"
-        onClick={handleClick}
-        >New Quote</Button>
+function Refresh({ quotes, quote, setquote, author, setauthor }) {
+    const dispatch = useDispatch()
+    return (
+        <div style={{ paddingTop: 50 }}>
+            <Button
+                color="secondary"
+                variant="contained"
+                onClick={() => dispatch(({ type: 'REFRESH', data: 'you just refreshed it bro! 😁' }))}
+            >New Quote</Button>
         </div>
     )
 }

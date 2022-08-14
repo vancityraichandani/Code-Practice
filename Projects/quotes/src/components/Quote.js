@@ -6,13 +6,14 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import 'animate.css';
+import { useDispatch } from 'react-redux'
 
-function Quote({ quotes, quote, setquote, author, setauthor }) {
 
+function Quote({ quotes, quote, author }) {
+
+    const dispatch = useDispatch()
     useEffect(() => {
-        let idx = Math.floor(Math.random() * (8))
-        setquote(quotes[idx].quote)
-        setauthor(quotes[idx].author)
+        dispatch({ type: 'REFRESH', data : 'first time ? 😉' })
     }, [])
 
     return (

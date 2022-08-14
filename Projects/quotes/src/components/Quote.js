@@ -23,7 +23,7 @@ function Quote({ quotes, quote, author }) {
                     <Typography sx={{ marginBottom: 2, fontSize: 14 }} color="text.secondary" gutterBottom>
                         Quote of the Day
                     </Typography>
-                    <div key={quote} className="animate__animated animate__rubberBand">
+                    <div key={quote} className="animate__animated animate__rubberBand glow">
                         <Typography sx={{ marginBottom: 4 }} variant="h5" component="div">
                             {quote}
                         </Typography>

@@ -10,7 +10,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.REFRESH:
-            let idx = Math.floor(Math.random() * (8))
+            let idx = Math.floor(Math.random() * (100))
             return {
                 ...state,
                 quote : quotes[idx].quote,
